@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 """
-No module to be imported at this time
+List to annotate the input
 """
+from typing import List
 
 
-def sum_list(input_list: list[float]) -> float:
+def sum_list(input_list: List[float]) -> float:
     """
     A function that takes a list of float and returns
     their sum
