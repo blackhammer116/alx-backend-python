@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
 """
 Union module to annotate a mixed list
+List to annotate user input
 """
-from typing import Union
+from typing import Union, List
 
 
-def sum_mixed_list(mxd_lst: list[Union[int, float]]) -> float:
+def sum_mixed_list(mxd_lst: List[Union[int, float]]) -> float:
     """
     A function that takes a mixed list and returns their sum
     as float
