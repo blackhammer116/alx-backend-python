@@ -1,12 +1,16 @@
 #!/usr/bin/env python3
 """
+asyncio for async functions
+list module for annotation
 wait random module to run the concurrently
 """
-
+import importlib
+from typing import List
+import asyncio
 wait_random = __import__('0-basic_async_syntax').wait_random
 
 
-async def wait_n(n, max_delay):
+async def wait_n(n: int, max_delay: int) -> list[float]:
     """
     A function that returns the delay time
     of wait_random 'n' times
@@ -14,9 +18,16 @@ async def wait_n(n, max_delay):
         n: number of times to execute wait_random
         max_delay: max_delay of the wait
     """
-    delay = []
-    for i in range(0, n):
-        d = wait_random(max_delay)
+    tasks = []
+    delays = []
+    for i in range(n):
+        task = asyncio.ensure_future(wait_random(max_delay))
+        tasks.append(task)
+    
+    for task in tasks:
+        delay = await task
+        delays.append(delay)
 
-        delay.append(d)
-    return delay
+    delays = sorted(delays)
+
+    return delays
