@@ -23,7 +23,7 @@ async def wait_n(n: int, max_delay: int) -> list[float]:
     for i in range(n):
         task = asyncio.ensure_future(wait_random(max_delay))
         tasks.append(task)
-    
+
     for task in tasks:
         delay = await task
         delays.append(delay)
