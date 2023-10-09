@@ -10,6 +10,6 @@ wait_random = __import__('0-basic_async_syntax').wait_random
 
 def task_wait_random(max_delay: int) -> asyncio.Task:
     """
-    A function that returns an asyncio task 
+    A function that returns an asyncio task
     """
     return asyncio.ensure_future(wait_random(max_delay))
