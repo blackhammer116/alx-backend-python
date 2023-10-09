@@ -7,7 +7,7 @@ import random
 import asyncio
 
 
-async def wait_random(max_delay: int =10) -> float:
+async def wait_random(max_delay: int = 10) -> float:
     """
     An async function that waits for a random delay
     and returns it
