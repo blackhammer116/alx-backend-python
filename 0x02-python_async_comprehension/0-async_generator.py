@@ -5,9 +5,9 @@ random for uniform method
 """
 import asyncio
 import random
+from typing import Generator
 
-
-async def async_generator() -> float:
+async def async_generator() -> Generator[float, None, None]:
     """
     A function that yields a random float from
     range 0-10 while waiting 1 sec
