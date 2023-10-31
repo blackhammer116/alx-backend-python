@@ -39,13 +39,19 @@ class TestAccessNestedMap(TestCase):
         ({}, ("a"), "KeyError: 'a'"),
         ({"a": 1}, ("a", "b"), "KeyError: 'b'")
         ])
-    def test_access_nested_map_exception(self, nested_map, path, expected_result) -> Any:
+    def test_access_nested_map_exception(
+            self,
+            nested_map,
+            path,
+            expected_result
+            ) -> Any:
         """
         A test method that tests for exceptions
         """
         with self.assertRaises(KeyError) as er:
             access_nested_map(nested_map, path)
             self.assertEqual(str(er.exception), "Key not found")
+
 
 class TestGetJson(TestCase):
     """
@@ -63,7 +69,8 @@ class TestGetJson(TestCase):
         A method that will test the get_json function in utils
         module
         """
-        test_cases = [("http://example.com", {"payload": True}),
+        test_cases = [
+                ("http://example.com", {"payload": True}),
                 ("http://holberton.io", {"payload": False})
                 ]
         for test_url, test_payload in test_cases:
