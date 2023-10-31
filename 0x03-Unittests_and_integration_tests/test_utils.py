@@ -3,9 +3,11 @@
 Essential testing and annotation modules
 that will be used in this module
 """
+import requests
 from parameterized import parameterized
 from unittest import TestCase
-from utils import access_nested_map
+from unittest import mock
+from utils import access_nested_map, get_json
 from typing import (
     Mapping,
     Sequence,
@@ -44,3 +46,31 @@ class TestAccessNestedMap(TestCase):
         with self.assertRaises(KeyError) as er:
             access_nested_map(nested_map, path)
             self.assertEqual(str(er.exception), "Key not found")
+
+class TestGetJson(TestCase):
+    """
+    A class to test the get_json function from utils module
+    Args:
+        TestCase: inherited from unittest
+    """
+    """@parameterized.expand([
+        ("http://example.com", {"payload": True}),
+        ("http://holberton.io", {"payload": False})
+        ])"""
+    @mock.patch('requests.get')
+    def test_get_json(self, mock_get) -> Dict:
+        """
+        A method that will test the get_json function in utils
+        module
+        """
+        test_cases = [("http://example.com", {"payload": True}),
+                ("http://holberton.io", {"payload": False})
+                ]
+        for test_url, test_payload in test_cases:
+            mock_response = mock.Mock()
+            mock_response.json.return_value = test_payload
+            mock_get.return_value = mock_response
+            result = get_json(test_url)
+            mock_get.assert_called_once_with(test_url)
+            self.assertEqual(result, test_payload)
+            mock_get.reset_mock()
